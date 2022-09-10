@@ -1,8 +1,7 @@
 import logo from './logos/Radiant_Sage.svg';
 import CustomNavbar from './components/CustomNavbar';
 import bootstrap from 'bootstrap';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './App.css';
 

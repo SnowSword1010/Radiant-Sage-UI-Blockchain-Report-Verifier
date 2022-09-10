@@ -6,12 +6,21 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import axios from "axios";
 
-function hello(e) {
+function handleSubmit(e) {
   e.preventDefault()
-  console.log(e.target.reportID.value);
-  console.log(e.target.reportTitle.value);
-  console.log(e.target.reportMessage.value);
+  const reportID = e.target.reportID.value;
+  const reportTitle = e.target.reportTitle.value;
+  const reportMessage = e.target.reportMessage.value;
+  console.log("Hey");
+  axios.post("http://localhost:5000/fetchRecord", {
+    "reportID": reportID,
+    "title": reportTitle,
+    "reportMessage": reportMessage
+  }).then((response) => {
+    console.log(response.data);
+  })
 }
 
 function CustomNavbar() {
@@ -23,7 +32,7 @@ function CustomNavbar() {
             <Navbar.Brand href="#">Advanced Query</Navbar.Brand>
           </Col>
           <Col xs={6}>
-            <Form className="d-lg-flex report-form" onSubmit={hello}>
+            <Form className="d-lg-flex report-form" onSubmit={handleSubmit}>
               <Form.Control
                 name="reportID"
                 as="input"
