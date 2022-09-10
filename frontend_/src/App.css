@@ -1,0 +1,22 @@
+.report-form {
+  display: inline;
+  width: 225%;
+}
+
+.report-id-input {
+  width: 30%;
+}
+
+.report-title-input {
+  margin-left: 1%;
+  width: 50%;
+}
+
+.report-message-input {
+  margin-left: 1%;
+  width: 150%;
+}
+
+.report-search-btn {
+  margin-left: 1%;
+}
