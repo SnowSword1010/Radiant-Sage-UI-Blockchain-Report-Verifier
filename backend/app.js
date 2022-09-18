@@ -16,15 +16,6 @@ const client = new Client({
 
 client.connect();
 
-client.query(`Select * from public.dim_queuemsgs order by messagedate desc limit 100;`, (err, res) => {
-    if (!err) {
-        // console.log(res.rows);
-    }
-    else {
-        console.log(err.message);
-    }
-    client.end;
-})
 
 const app = express();
 // multer config
@@ -74,8 +65,8 @@ app.post("/fetchRecord", (req, response) => {
     }
     // fetching records
     client.query(`SELECT * FROM public.dim_queuemsgs 
-    WHERE ( (queuemsgsid=$1 OR $1 IS NULL) AND (title=$2 OR $2 IS NULL) AND (message::TEXT LIKE CONCAT('%', $3::TEXT, '%')))
-    ORDER BY messagedate DESC LIMIT 5;`,
+    WHERE ((queuemsgsid=$1 OR $1 IS NULL) AND (title=$2 OR $2 IS NULL) AND (message::TEXT LIKE CONCAT('%', $3::TEXT, '%')))
+    ORDER BY messagedate DESC limit 50000;`,
         [id_param, title_param, message_param],
         (err, res) => {
             if (!err) {

@@ -7,6 +7,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import axios from "axios";
+import logo from '../logos/Radiant_Sage.svg';
 
 
 
@@ -16,24 +17,25 @@ function CustomNavbar(props) {
     const reportID = e.target.reportID.value;
     const reportTitle = e.target.reportTitle.value;
     const reportMessage = e.target.reportMessage.value;
-    console.log("Hey");
+    props.loadingState.setLoading(true);
     axios.post("http://localhost:5000/fetchRecord", {
       "reportID": reportID,
       "title": reportTitle,
       "reportMessage": reportMessage
     }).then((response) => {
       props.tableState.setTableData(response.data);
-      console.log(response.data);
+      props.loadingState.setLoading(false);
     })
   }
   return (
     <Navbar bg="dark" expand="lg" variant="dark">
       <Container fluid>
         <Row>
-          <Col>
-            <Navbar.Brand href="#">Advanced Query</Navbar.Brand>
+          <Col xs={4}>
+            <img src={logo} className="App-logo logo-style" alt="logo" />
+            <Navbar.Brand href="#" className='title'>Report Verifier</Navbar.Brand>
           </Col>
-          <Col xs={6}>
+          <Col xs={5}>
             <Form className="d-lg-flex report-form" onSubmit={handleSubmit}>
               <Form.Control
                 name="reportID"
